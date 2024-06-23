@@ -56,12 +56,11 @@ export default function OwnerDashboard() {
 
     const handleVerificationClick = async () => {
         const contractOwner = await getOwner()
-        // console.log(contractOwner)
-        // console.log(account)
-        // console.log(contractOwner === account)
+        console.log(contractOwner)
+        console.log(account)
+        console.log(contractOwner === account)
         if (
-            contractOwner.toString().toLowerCase() ===
-            account.toString().toLowerCase()
+            contractOwner.toString().toLowerCase() ===  account.toString().toLowerCase()
         ) {
             dispatch({
                 type: "success",
