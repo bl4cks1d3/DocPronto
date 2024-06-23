@@ -33,7 +33,7 @@ export default function AddPatientModal({ isVisible, onClose }) {
     } = useQuery(GET_PUBLIC_KEYS)
 
     const handleAddedPatientDetailsSuccess = async (tx) => {
-        await tx.wait(1)
+        await tx.wait()
         dispatch({
             type: "success",
             title: "Transaction Successful",

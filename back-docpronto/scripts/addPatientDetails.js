@@ -16,7 +16,7 @@ async function addPatientDetails() {
                 gasLimit: 3e7
             }
         )
-        await tx.wait(1)
+        await tx.wait()
         console.log(`Patient Details added to PatientMedicalRecordSystem`)
 
         if (network.config.chainId == 31337) {

@@ -32,7 +32,9 @@
         "solidity-coverage": "^0.7.21"
     },
     "dependencies": {
+        "@graphprotocol/graph-cli": "^0.76.0",
         "babel-eslint": "^10.1.0",
-        "dotenv": "^16.0.1"
+        "dotenv": "^16.0.1",
+        "hardhat-graph": "^0.1.0-alpha.4"
     }
 }

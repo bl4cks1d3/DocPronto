@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   env: {
-    subgraph_url: 'http://localhost:8000/subgraphs/name/localhost',
+    subgraph_url: 'http://localhost:8000/subgraphs/name/doc',
   },
 }
 

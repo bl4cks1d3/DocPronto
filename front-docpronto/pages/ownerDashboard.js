@@ -100,7 +100,7 @@ export default function OwnerDashboard() {
     //Add Doctor
 
     const handleAddDoctorSuccess = async (tx) => {
-        await tx.wait(1)
+        await tx.wait()
         dispatch({
             type: "success",
             title: "Transaction Successful",
@@ -148,7 +148,7 @@ export default function OwnerDashboard() {
 
     //Add Hospital
     const handleAddHospitalSuccess = async (tx) => {
-        await tx.wait(1)
+        await tx.wait()
         dispatch({
             type: "success",
             title: "Transaction Successful",

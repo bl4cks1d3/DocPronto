@@ -15,7 +15,7 @@ async function addHospitals() {
             hospital.email,
             hospital.phone
         )
-        await tx.wait(1)
+        await tx.wait()
         console.log(`Hospital ${hospital.name} added to PatientMedicalRecordSystem`)
         if (network.config.chainId == 31337) {
             moveBlocks(2, (sleepAmount = 1000)) //1s

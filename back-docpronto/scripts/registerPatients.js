@@ -20,7 +20,7 @@ async function registerPatients() {
             patient.bloodGroup,
             patient.publicKey
         )
-        await tx.wait(1)
+        await tx.wait()
         console.log(`Patient ${patient.name} added to PatientMedicalRecordSystem`)
         if (network.config.chainId == 31337) {
             moveBlocks(2, (sleepAmount = 1000)) //1s

@@ -29,7 +29,7 @@ export default function RegisterPatientModal({ isVisible, onClose, account }) {
     // console.log("I am contract address", medicalRecordSystemAddress)
     // console.log("I am chain Id: ", chainId)
     const handleRegisterPatientSuccess = async (tx) => {
-        await tx.wait(1)
+        await tx.wait()
         dispatch({
             type: "success",
             title: "Transaction Successful",
