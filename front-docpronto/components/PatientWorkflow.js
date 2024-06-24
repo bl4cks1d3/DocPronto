@@ -22,13 +22,10 @@ export default function PatientWorkflow() {
                     </div>
                     <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
                         <h2 className="text-gray-900 text-lg title-font font-medium mb-2">
-                            Patient Registration
+                            Cadastrar paciente
                         </h2>
                         <p className="leading-relaxed text-base">
-                            Any patient can register in this system. The patient
-                            just needs an wallet(account) to log in to the
-                            system and after filling some required details the
-                            patient can be register by the system.
+                        Qualquer paciente pode se cadastrar neste sistema. Para isso, o paciente só precisa de uma carteira (conta) para fazer login no sistema. Após preencher alguns dados obrigatórios, o paciente pode ser registrado no sistema.
                         </p>
                     </div>
                 </div>
@@ -51,10 +48,7 @@ export default function PatientWorkflow() {
                             View Medical Records
                         </h2>
                         <p className="leading-relaxed text-base">
-                            A particular patient can only view his/her medical
-                            records and no one else not even doctors can view
-                            it. This renders the patient in full control of
-                            his/her data.
+                        O paciente pode visualizar apenas seus próprios registros médicos. Nenhuma outra pessoa, incluindo médicos, pode acessar esses registros sem permissão. Isso garante que o paciente tenha total controle sobre seus dados. Além disso, o paciente tem a capacidade de conceder e revogar o acesso aos seus registros médicos a qualquer momento.
                         </p>
                     </div>
                 </div>

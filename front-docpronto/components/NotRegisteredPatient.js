@@ -31,12 +31,12 @@ export default function NotRegisteredPatient({account}) {
                         <span className="font-semibold text-lg">
                             Alert: Nao registrado <br />
                         </span>
-                        You are <span className="font-semibold">NOT</span>{" "}
-                        registered as a{" "}
-                        <span className="font-semibold italic">Patient</span> in
-                        our system. You can{" "}
+                        Voce <span className="font-semibold">NÃO</span>{" "}
+                        esta registrado como{" "}
+                        <span className="font-semibold italic">Paciente</span> no
+                        sistema. Se desejar{" "}
                         <span className="font-semibold italic">
-                            Register Yourself
+                            Cadastrar Agora
                         </span>{" "}
                         by clicking below and filling a form...
                     </span>

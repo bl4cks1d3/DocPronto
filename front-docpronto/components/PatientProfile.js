@@ -175,7 +175,7 @@ export default function PatientProfile({
                         <div className="mb-1">
                             <span>
                                 <span className="font-sans md:text-xl font-medium hover:underline">
-                                    Name
+                                    Nome
                                 </span>
                                 :{" "}
                                 <span className="font-serif md:text-xl font-normal">
@@ -188,7 +188,7 @@ export default function PatientProfile({
                         </div>
                         <div className="mb-1">
                             <span className="font-sans md:text-xl font-medium hover:underline">
-                                Patient Account Address
+                                Endereço Paciente
                             </span>
                             :{" "}
                             <a
@@ -205,7 +205,7 @@ export default function PatientProfile({
                         </div>
                         <div className="mb-1">
                             <span className="font-sans md:text-xl font-medium hover:underline">
-                                Date of Birth
+                                Data de Nascimento
                             </span>
                             :{" "}
                             <a className="badge badge-success ml-3 md:p-2 px-4">
@@ -214,7 +214,7 @@ export default function PatientProfile({
                         </div>
                         <div className="mb-1">
                             <span className="font-sans md:text-xl font-medium hover:underline">
-                                Date of Registration
+                                Data de Registro
                             </span>
                             :{" "}
                             <a className="badge badge-accent ml-3 md:p-2 px-4">
