@@ -19,19 +19,19 @@ export default function HospitalDashboard() {
     const patientMedicalRecordSystemAddress =
         networkMapping[chainId].PatientMedicalRecordSystem[-1]
     const {
-        loading: fetchingAddedHospitals,
+        loading: fetchinghospitals,
         error,
-        data: addedHospitals,
+        data: hospitals,
     } = useQuery(GET_ADDED_HOSPITALS)
 
-    // if (!fetchingAddedHospitals && addedHospitals) {
-    //     console.log(addedHospitals)
+    // if (!fetchinghospitals && hospitals) {
+    //     console.log(hospitals)
     // }
 
     let hospitalProfileFound = false
     let hospitalAddresses
-    if (!fetchingAddedHospitals && addedHospitals) {
-        hospitalAddresses = addedHospitals.addedHospitals.map(
+    if (!fetchinghospitals && hospitals) {
+        hospitalAddresses = hospitals.hospitals.map(
             (hospital) => hospital.hospitalAddress
         )
         if (hospitalAddresses.includes(account)) {
@@ -69,7 +69,7 @@ export default function HospitalDashboard() {
 
                 <div className="ml-10 w-4/6">
                     {isWeb3Enabled ? (
-                        fetchingAddedHospitals || !addedHospitals ? (
+                        fetchinghospitals || !hospitals ? (
                             <div
                                 style={{
                                     backgroundColor: "#ECECFE",
@@ -88,7 +88,7 @@ export default function HospitalDashboard() {
                                 />
                             </div>
                         ) : hospitalProfileFound ? (
-                            addedHospitals.addedHospitals.map((hospital) => {
+                            hospitals.hospitals.map((hospital) => {
                                 hospitalAddresses.push(hospital.hospitalAddress)
                                 if (hospital.hospitalAddress === account) {
                                     const {

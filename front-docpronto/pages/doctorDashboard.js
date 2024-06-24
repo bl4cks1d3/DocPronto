@@ -17,15 +17,15 @@ export default function DoctorDashboard() {
     const patientMedicalRecordSystemAddress =
         networkMapping[chainId].PatientMedicalRecordSystem[0]
     const {
-        loading: fetchingAddedDoctors,
+        loading: fetchingdoctors,
         error,
-        data: addedDoctors,
+        data: doctors,
     } = useQuery(GET_ADDED_DOCTORS)
 
     let doctorProfileFound = false
     let doctorAddresses
-    if (!fetchingAddedDoctors && addedDoctors) {
-        doctorAddresses = addedDoctors.addedDoctors.map(
+    if (!fetchingdoctors && doctors) {
+        doctorAddresses = doctors.doctors.map(
             (doctor) => doctor.doctorAddress
         )
         if (doctorAddresses.includes(account)) {
@@ -63,7 +63,7 @@ export default function DoctorDashboard() {
 
                 <div className="ml-10 w-4/6">
                     {isWeb3Enabled ? (
-                        fetchingAddedDoctors || !addedDoctors ? (
+                        fetchingdoctors || !doctors ? (
                             <div
                                 style={{
                                     backgroundColor: "#ECECFE",
@@ -82,7 +82,7 @@ export default function DoctorDashboard() {
                                 />
                             </div>
                         ) : doctorProfileFound ? (
-                            addedDoctors.addedDoctors.map((doctor) => {
+                            doctors.doctors.map((doctor) => {
                                 doctorAddresses.push(doctor.doctorAddress)
                                 if (doctor.doctorAddress === account) {
                                     const {
