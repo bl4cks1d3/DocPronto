@@ -9,9 +9,6 @@ require("dotenv").config()
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
-
-
-
 module.exports = {
     defaultNetwork: "hardhat",
     networks: {
@@ -28,12 +25,6 @@ module.exports = {
             allowUnlimitedContractSize: true,
         },
         
-    },
-    etherscan: {
-        //**  npx hardhat verify --network <NETWORK> <CONTRACT_ADDRESS> <CONSTRUCTOR_PARAMETERS>
-        apiKey: {
-
-        },
     },
     contractSizer: {
         runOnCompile: true,

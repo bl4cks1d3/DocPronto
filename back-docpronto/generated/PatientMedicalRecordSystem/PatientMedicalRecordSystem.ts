@@ -10,6 +10,76 @@ import {
   BigInt,
 } from "@graphprotocol/graph-ts";
 
+export class AccessGranted extends ethereum.Event {
+  get params(): AccessGranted__Params {
+    return new AccessGranted__Params(this);
+  }
+}
+
+export class AccessGranted__Params {
+  _event: AccessGranted;
+
+  constructor(event: AccessGranted) {
+    this._event = event;
+  }
+
+  get patient(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get medicalStaff(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+}
+
+export class AccessLogged extends ethereum.Event {
+  get params(): AccessLogged__Params {
+    return new AccessLogged__Params(this);
+  }
+}
+
+export class AccessLogged__Params {
+  _event: AccessLogged;
+
+  constructor(event: AccessLogged) {
+    this._event = event;
+  }
+
+  get patient(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get accessor(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
+  get action(): string {
+    return this._event.parameters[2].value.toString();
+  }
+}
+
+export class AccessRevoked extends ethereum.Event {
+  get params(): AccessRevoked__Params {
+    return new AccessRevoked__Params(this);
+  }
+}
+
+export class AccessRevoked__Params {
+  _event: AccessRevoked;
+
+  constructor(event: AccessRevoked) {
+    this._event = event;
+  }
+
+  get patient(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get medicalStaff(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+}
+
 export class AddedDoctor extends ethereum.Event {
   get params(): AddedDoctor__Params {
     return new AddedDoctor__Params(this);
@@ -83,6 +153,40 @@ export class AddedHospital__Params {
 
   get phoneNumber(): string {
     return this._event.parameters[5].value.toString();
+  }
+}
+
+export class AddedNurse extends ethereum.Event {
+  get params(): AddedNurse__Params {
+    return new AddedNurse__Params(this);
+  }
+}
+
+export class AddedNurse__Params {
+  _event: AddedNurse;
+
+  constructor(event: AddedNurse) {
+    this._event = event;
+  }
+
+  get nurseAddress(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get name(): string {
+    return this._event.parameters[1].value.toString();
+  }
+
+  get nurseRegistrationId(): string {
+    return this._event.parameters[2].value.toString();
+  }
+
+  get dateOfRegistration(): BigInt {
+    return this._event.parameters[3].value.toBigInt();
+  }
+
+  get hospitalAddress(): Address {
+    return this._event.parameters[4].value.toAddress();
   }
 }
 
@@ -166,6 +270,240 @@ export class AddedPublicKey__Params {
   }
 }
 
+export class AmbulatoryRecorded extends ethereum.Event {
+  get params(): AmbulatoryRecorded__Params {
+    return new AmbulatoryRecorded__Params(this);
+  }
+}
+
+export class AmbulatoryRecorded__Params {
+  _event: AmbulatoryRecorded;
+
+  constructor(event: AmbulatoryRecorded) {
+    this._event = event;
+  }
+
+  get patient(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get doctor(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
+  get timestamp(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
+  }
+
+  get diagnosis(): string {
+    return this._event.parameters[3].value.toString();
+  }
+
+  get treatment(): string {
+    return this._event.parameters[4].value.toString();
+  }
+}
+
+export class MedicationAdded extends ethereum.Event {
+  get params(): MedicationAdded__Params {
+    return new MedicationAdded__Params(this);
+  }
+}
+
+export class MedicationAdded__Params {
+  _event: MedicationAdded;
+
+  constructor(event: MedicationAdded) {
+    this._event = event;
+  }
+
+  get patient(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get name(): string {
+    return this._event.parameters[1].value.toString();
+  }
+
+  get dosage(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
+  }
+
+  get frequency(): string {
+    return this._event.parameters[3].value.toString();
+  }
+
+  get startDate(): BigInt {
+    return this._event.parameters[4].value.toBigInt();
+  }
+
+  get endDate(): BigInt {
+    return this._event.parameters[5].value.toBigInt();
+  }
+}
+
+export class NoteAdded extends ethereum.Event {
+  get params(): NoteAdded__Params {
+    return new NoteAdded__Params(this);
+  }
+}
+
+export class NoteAdded__Params {
+  _event: NoteAdded;
+
+  constructor(event: NoteAdded) {
+    this._event = event;
+  }
+
+  get patient(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get author(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
+  get timestamp(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
+  }
+
+  get content(): string {
+    return this._event.parameters[3].value.toString();
+  }
+}
+
+export class ReceptionRecorded extends ethereum.Event {
+  get params(): ReceptionRecorded__Params {
+    return new ReceptionRecorded__Params(this);
+  }
+}
+
+export class ReceptionRecorded__Params {
+  _event: ReceptionRecorded;
+
+  constructor(event: ReceptionRecorded) {
+    this._event = event;
+  }
+
+  get patient(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get receptionist(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
+  get timestamp(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
+  }
+
+  get notes(): string {
+    return this._event.parameters[3].value.toString();
+  }
+}
+
+export class TriageRecorded extends ethereum.Event {
+  get params(): TriageRecorded__Params {
+    return new TriageRecorded__Params(this);
+  }
+}
+
+export class TriageRecorded__Params {
+  _event: TriageRecorded;
+
+  constructor(event: TriageRecorded) {
+    this._event = event;
+  }
+
+  get patient(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get nurse(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
+  get timestamp(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
+  }
+
+  get condition(): string {
+    return this._event.parameters[3].value.toString();
+  }
+
+  get severity(): string {
+    return this._event.parameters[4].value.toString();
+  }
+}
+
+export class PatientMedicalRecordSystem__accessLogsResult {
+  value0: Address;
+  value1: BigInt;
+  value2: string;
+
+  constructor(value0: Address, value1: BigInt, value2: string) {
+    this.value0 = value0;
+    this.value1 = value1;
+    this.value2 = value2;
+  }
+
+  toMap(): TypedMap<string, ethereum.Value> {
+    let map = new TypedMap<string, ethereum.Value>();
+    map.set("value0", ethereum.Value.fromAddress(this.value0));
+    map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
+    map.set("value2", ethereum.Value.fromString(this.value2));
+    return map;
+  }
+
+  getAccessor(): Address {
+    return this.value0;
+  }
+
+  getTimestamp(): BigInt {
+    return this.value1;
+  }
+
+  getAction(): string {
+    return this.value2;
+  }
+}
+
+export class PatientMedicalRecordSystem__getAccessLogsResultValue0Struct extends ethereum.Tuple {
+  get accessor(): Address {
+    return this[0].toAddress();
+  }
+
+  get timestamp(): BigInt {
+    return this[1].toBigInt();
+  }
+
+  get action(): string {
+    return this[2].toString();
+  }
+}
+
+export class PatientMedicalRecordSystem__getAmbulatoryRecordsResultValue0Struct extends ethereum.Tuple {
+  get patientAddress(): Address {
+    return this[0].toAddress();
+  }
+
+  get doctorAddress(): Address {
+    return this[1].toAddress();
+  }
+
+  get timestamp(): BigInt {
+    return this[2].toBigInt();
+  }
+
+  get diagnosis(): string {
+    return this[3].toString();
+  }
+
+  get treatment(): string {
+    return this[4].toString();
+  }
+}
+
 export class PatientMedicalRecordSystem__getDoctorDetailsResult {
   value0: string;
   value1: string;
@@ -237,6 +575,28 @@ export class PatientMedicalRecordSystem__getHospitalDetailsResult {
   }
 }
 
+export class PatientMedicalRecordSystem__getMedicationsResultValue0Struct extends ethereum.Tuple {
+  get name(): string {
+    return this[0].toString();
+  }
+
+  get dosage(): BigInt {
+    return this[1].toBigInt();
+  }
+
+  get frequency(): string {
+    return this[2].toString();
+  }
+
+  get startDate(): BigInt {
+    return this[3].toBigInt();
+  }
+
+  get endDate(): BigInt {
+    return this[4].toBigInt();
+  }
+}
+
 export class PatientMedicalRecordSystem__getMyDetailsResultValue0Struct extends ethereum.Tuple {
   get name(): string {
     return this[0].toString();
@@ -283,6 +643,20 @@ export class PatientMedicalRecordSystem__getMyDetailsResultValue0Struct extends 
   }
 }
 
+export class PatientMedicalRecordSystem__getNotesResultValue0Struct extends ethereum.Tuple {
+  get author(): Address {
+    return this[0].toAddress();
+  }
+
+  get timestamp(): BigInt {
+    return this[1].toBigInt();
+  }
+
+  get content(): string {
+    return this[2].toString();
+  }
+}
+
 export class PatientMedicalRecordSystem__getPatientDetailsResult {
   value0: string;
   value1: string;
@@ -315,11 +689,184 @@ export class PatientMedicalRecordSystem__getPatientDetailsResult {
   }
 }
 
+export class PatientMedicalRecordSystem__getReceptionRecordsResultValue0Struct extends ethereum.Tuple {
+  get patientAddress(): Address {
+    return this[0].toAddress();
+  }
+
+  get receptionistAddress(): Address {
+    return this[1].toAddress();
+  }
+
+  get timestamp(): BigInt {
+    return this[2].toBigInt();
+  }
+
+  get notes(): string {
+    return this[3].toString();
+  }
+}
+
+export class PatientMedicalRecordSystem__getTriageRecordsResultValue0Struct extends ethereum.Tuple {
+  get patientAddress(): Address {
+    return this[0].toAddress();
+  }
+
+  get nurseAddress(): Address {
+    return this[1].toAddress();
+  }
+
+  get timestamp(): BigInt {
+    return this[2].toBigInt();
+  }
+
+  get condition(): string {
+    return this[3].toString();
+  }
+
+  get severity(): string {
+    return this[4].toString();
+  }
+}
+
 export class PatientMedicalRecordSystem extends ethereum.SmartContract {
   static bind(address: Address): PatientMedicalRecordSystem {
     return new PatientMedicalRecordSystem(
       "PatientMedicalRecordSystem",
       address,
+    );
+  }
+
+  accessLogs(
+    param0: Address,
+    param1: BigInt,
+  ): PatientMedicalRecordSystem__accessLogsResult {
+    let result = super.call(
+      "accessLogs",
+      "accessLogs(address,uint256):(address,uint256,string)",
+      [
+        ethereum.Value.fromAddress(param0),
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
+    );
+
+    return new PatientMedicalRecordSystem__accessLogsResult(
+      result[0].toAddress(),
+      result[1].toBigInt(),
+      result[2].toString(),
+    );
+  }
+
+  try_accessLogs(
+    param0: Address,
+    param1: BigInt,
+  ): ethereum.CallResult<PatientMedicalRecordSystem__accessLogsResult> {
+    let result = super.tryCall(
+      "accessLogs",
+      "accessLogs(address,uint256):(address,uint256,string)",
+      [
+        ethereum.Value.fromAddress(param0),
+        ethereum.Value.fromUnsignedBigInt(param1),
+      ],
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(
+      new PatientMedicalRecordSystem__accessLogsResult(
+        value[0].toAddress(),
+        value[1].toBigInt(),
+        value[2].toString(),
+      ),
+    );
+  }
+
+  accessPermissions(param0: Address, param1: Address): boolean {
+    let result = super.call(
+      "accessPermissions",
+      "accessPermissions(address,address):(bool)",
+      [ethereum.Value.fromAddress(param0), ethereum.Value.fromAddress(param1)],
+    );
+
+    return result[0].toBoolean();
+  }
+
+  try_accessPermissions(
+    param0: Address,
+    param1: Address,
+  ): ethereum.CallResult<boolean> {
+    let result = super.tryCall(
+      "accessPermissions",
+      "accessPermissions(address,address):(bool)",
+      [ethereum.Value.fromAddress(param0), ethereum.Value.fromAddress(param1)],
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBoolean());
+  }
+
+  getAccessLogs(
+    _patientAddress: Address,
+  ): Array<PatientMedicalRecordSystem__getAccessLogsResultValue0Struct> {
+    let result = super.call(
+      "getAccessLogs",
+      "getAccessLogs(address):((address,uint256,string)[])",
+      [ethereum.Value.fromAddress(_patientAddress)],
+    );
+
+    return result[0].toTupleArray<PatientMedicalRecordSystem__getAccessLogsResultValue0Struct>();
+  }
+
+  try_getAccessLogs(
+    _patientAddress: Address,
+  ): ethereum.CallResult<
+    Array<PatientMedicalRecordSystem__getAccessLogsResultValue0Struct>
+  > {
+    let result = super.tryCall(
+      "getAccessLogs",
+      "getAccessLogs(address):((address,uint256,string)[])",
+      [ethereum.Value.fromAddress(_patientAddress)],
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(
+      value[0].toTupleArray<PatientMedicalRecordSystem__getAccessLogsResultValue0Struct>(),
+    );
+  }
+
+  getAmbulatoryRecords(
+    _patientAddress: Address,
+  ): Array<PatientMedicalRecordSystem__getAmbulatoryRecordsResultValue0Struct> {
+    let result = super.call(
+      "getAmbulatoryRecords",
+      "getAmbulatoryRecords(address):((address,address,uint256,string,string)[])",
+      [ethereum.Value.fromAddress(_patientAddress)],
+    );
+
+    return result[0].toTupleArray<PatientMedicalRecordSystem__getAmbulatoryRecordsResultValue0Struct>();
+  }
+
+  try_getAmbulatoryRecords(
+    _patientAddress: Address,
+  ): ethereum.CallResult<
+    Array<PatientMedicalRecordSystem__getAmbulatoryRecordsResultValue0Struct>
+  > {
+    let result = super.tryCall(
+      "getAmbulatoryRecords",
+      "getAmbulatoryRecords(address):((address,address,uint256,string,string)[])",
+      [ethereum.Value.fromAddress(_patientAddress)],
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(
+      value[0].toTupleArray<PatientMedicalRecordSystem__getAmbulatoryRecordsResultValue0Struct>(),
     );
   }
 
@@ -399,6 +946,37 @@ export class PatientMedicalRecordSystem extends ethereum.SmartContract {
     );
   }
 
+  getMedications(
+    _patientAddress: Address,
+  ): Array<PatientMedicalRecordSystem__getMedicationsResultValue0Struct> {
+    let result = super.call(
+      "getMedications",
+      "getMedications(address):((string,uint256,string,uint256,uint256)[])",
+      [ethereum.Value.fromAddress(_patientAddress)],
+    );
+
+    return result[0].toTupleArray<PatientMedicalRecordSystem__getMedicationsResultValue0Struct>();
+  }
+
+  try_getMedications(
+    _patientAddress: Address,
+  ): ethereum.CallResult<
+    Array<PatientMedicalRecordSystem__getMedicationsResultValue0Struct>
+  > {
+    let result = super.tryCall(
+      "getMedications",
+      "getMedications(address):((string,uint256,string,uint256,uint256)[])",
+      [ethereum.Value.fromAddress(_patientAddress)],
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(
+      value[0].toTupleArray<PatientMedicalRecordSystem__getMedicationsResultValue0Struct>(),
+    );
+  }
+
   getMyDetails(): PatientMedicalRecordSystem__getMyDetailsResultValue0Struct {
     let result = super.call(
       "getMyDetails",
@@ -425,6 +1003,37 @@ export class PatientMedicalRecordSystem extends ethereum.SmartContract {
       changetype<PatientMedicalRecordSystem__getMyDetailsResultValue0Struct>(
         value[0].toTuple(),
       ),
+    );
+  }
+
+  getNotes(
+    _patientAddress: Address,
+  ): Array<PatientMedicalRecordSystem__getNotesResultValue0Struct> {
+    let result = super.call(
+      "getNotes",
+      "getNotes(address):((address,uint256,string)[])",
+      [ethereum.Value.fromAddress(_patientAddress)],
+    );
+
+    return result[0].toTupleArray<PatientMedicalRecordSystem__getNotesResultValue0Struct>();
+  }
+
+  try_getNotes(
+    _patientAddress: Address,
+  ): ethereum.CallResult<
+    Array<PatientMedicalRecordSystem__getNotesResultValue0Struct>
+  > {
+    let result = super.tryCall(
+      "getNotes",
+      "getNotes(address):((address,uint256,string)[])",
+      [ethereum.Value.fromAddress(_patientAddress)],
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(
+      value[0].toTupleArray<PatientMedicalRecordSystem__getNotesResultValue0Struct>(),
     );
   }
 
@@ -499,6 +1108,68 @@ export class PatientMedicalRecordSystem extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toString());
+  }
+
+  getReceptionRecords(
+    _patientAddress: Address,
+  ): Array<PatientMedicalRecordSystem__getReceptionRecordsResultValue0Struct> {
+    let result = super.call(
+      "getReceptionRecords",
+      "getReceptionRecords(address):((address,address,uint256,string)[])",
+      [ethereum.Value.fromAddress(_patientAddress)],
+    );
+
+    return result[0].toTupleArray<PatientMedicalRecordSystem__getReceptionRecordsResultValue0Struct>();
+  }
+
+  try_getReceptionRecords(
+    _patientAddress: Address,
+  ): ethereum.CallResult<
+    Array<PatientMedicalRecordSystem__getReceptionRecordsResultValue0Struct>
+  > {
+    let result = super.tryCall(
+      "getReceptionRecords",
+      "getReceptionRecords(address):((address,address,uint256,string)[])",
+      [ethereum.Value.fromAddress(_patientAddress)],
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(
+      value[0].toTupleArray<PatientMedicalRecordSystem__getReceptionRecordsResultValue0Struct>(),
+    );
+  }
+
+  getTriageRecords(
+    _patientAddress: Address,
+  ): Array<PatientMedicalRecordSystem__getTriageRecordsResultValue0Struct> {
+    let result = super.call(
+      "getTriageRecords",
+      "getTriageRecords(address):((address,address,uint256,string,string)[])",
+      [ethereum.Value.fromAddress(_patientAddress)],
+    );
+
+    return result[0].toTupleArray<PatientMedicalRecordSystem__getTriageRecordsResultValue0Struct>();
+  }
+
+  try_getTriageRecords(
+    _patientAddress: Address,
+  ): ethereum.CallResult<
+    Array<PatientMedicalRecordSystem__getTriageRecordsResultValue0Struct>
+  > {
+    let result = super.tryCall(
+      "getTriageRecords",
+      "getTriageRecords(address):((address,address,uint256,string,string)[])",
+      [ethereum.Value.fromAddress(_patientAddress)],
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(
+      value[0].toTupleArray<PatientMedicalRecordSystem__getTriageRecordsResultValue0Struct>(),
+    );
   }
 }
 
@@ -624,6 +1295,136 @@ export class AddHospitalDetailsCall__Outputs {
   }
 }
 
+export class AddMedicationCall extends ethereum.Call {
+  get inputs(): AddMedicationCall__Inputs {
+    return new AddMedicationCall__Inputs(this);
+  }
+
+  get outputs(): AddMedicationCall__Outputs {
+    return new AddMedicationCall__Outputs(this);
+  }
+}
+
+export class AddMedicationCall__Inputs {
+  _call: AddMedicationCall;
+
+  constructor(call: AddMedicationCall) {
+    this._call = call;
+  }
+
+  get _patientAddress(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+
+  get _name(): string {
+    return this._call.inputValues[1].value.toString();
+  }
+
+  get _dosage(): BigInt {
+    return this._call.inputValues[2].value.toBigInt();
+  }
+
+  get _frequency(): string {
+    return this._call.inputValues[3].value.toString();
+  }
+
+  get _startDate(): BigInt {
+    return this._call.inputValues[4].value.toBigInt();
+  }
+
+  get _endDate(): BigInt {
+    return this._call.inputValues[5].value.toBigInt();
+  }
+}
+
+export class AddMedicationCall__Outputs {
+  _call: AddMedicationCall;
+
+  constructor(call: AddMedicationCall) {
+    this._call = call;
+  }
+}
+
+export class AddNoteCall extends ethereum.Call {
+  get inputs(): AddNoteCall__Inputs {
+    return new AddNoteCall__Inputs(this);
+  }
+
+  get outputs(): AddNoteCall__Outputs {
+    return new AddNoteCall__Outputs(this);
+  }
+}
+
+export class AddNoteCall__Inputs {
+  _call: AddNoteCall;
+
+  constructor(call: AddNoteCall) {
+    this._call = call;
+  }
+
+  get _patientAddress(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+
+  get _content(): string {
+    return this._call.inputValues[1].value.toString();
+  }
+}
+
+export class AddNoteCall__Outputs {
+  _call: AddNoteCall;
+
+  constructor(call: AddNoteCall) {
+    this._call = call;
+  }
+}
+
+export class AddNurseDetailsCall extends ethereum.Call {
+  get inputs(): AddNurseDetailsCall__Inputs {
+    return new AddNurseDetailsCall__Inputs(this);
+  }
+
+  get outputs(): AddNurseDetailsCall__Outputs {
+    return new AddNurseDetailsCall__Outputs(this);
+  }
+}
+
+export class AddNurseDetailsCall__Inputs {
+  _call: AddNurseDetailsCall;
+
+  constructor(call: AddNurseDetailsCall) {
+    this._call = call;
+  }
+
+  get _nurseAddress(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+
+  get _name(): string {
+    return this._call.inputValues[1].value.toString();
+  }
+
+  get _nurseRegistrationId(): string {
+    return this._call.inputValues[2].value.toString();
+  }
+
+  get _dateOfRegistration(): BigInt {
+    return this._call.inputValues[3].value.toBigInt();
+  }
+
+  get _hospitalAddress(): Address {
+    return this._call.inputValues[4].value.toAddress();
+  }
+}
+
+export class AddNurseDetailsCall__Outputs {
+  _call: AddNurseDetailsCall;
+
+  constructor(call: AddNurseDetailsCall) {
+    this._call = call;
+  }
+}
+
 export class AddPatientDetailsCall extends ethereum.Call {
   get inputs(): AddPatientDetailsCall__Inputs {
     return new AddPatientDetailsCall__Inputs(this);
@@ -658,6 +1459,154 @@ export class AddPatientDetailsCall__Outputs {
   _call: AddPatientDetailsCall;
 
   constructor(call: AddPatientDetailsCall) {
+    this._call = call;
+  }
+}
+
+export class GrantAccessCall extends ethereum.Call {
+  get inputs(): GrantAccessCall__Inputs {
+    return new GrantAccessCall__Inputs(this);
+  }
+
+  get outputs(): GrantAccessCall__Outputs {
+    return new GrantAccessCall__Outputs(this);
+  }
+}
+
+export class GrantAccessCall__Inputs {
+  _call: GrantAccessCall;
+
+  constructor(call: GrantAccessCall) {
+    this._call = call;
+  }
+
+  get _patientAddress(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+
+  get _medicalStaff(): Address {
+    return this._call.inputValues[1].value.toAddress();
+  }
+}
+
+export class GrantAccessCall__Outputs {
+  _call: GrantAccessCall;
+
+  constructor(call: GrantAccessCall) {
+    this._call = call;
+  }
+}
+
+export class RecordAmbulatoryCall extends ethereum.Call {
+  get inputs(): RecordAmbulatoryCall__Inputs {
+    return new RecordAmbulatoryCall__Inputs(this);
+  }
+
+  get outputs(): RecordAmbulatoryCall__Outputs {
+    return new RecordAmbulatoryCall__Outputs(this);
+  }
+}
+
+export class RecordAmbulatoryCall__Inputs {
+  _call: RecordAmbulatoryCall;
+
+  constructor(call: RecordAmbulatoryCall) {
+    this._call = call;
+  }
+
+  get _patientAddress(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+
+  get _doctorAddress(): Address {
+    return this._call.inputValues[1].value.toAddress();
+  }
+
+  get _diagnosis(): string {
+    return this._call.inputValues[2].value.toString();
+  }
+
+  get _treatment(): string {
+    return this._call.inputValues[3].value.toString();
+  }
+}
+
+export class RecordAmbulatoryCall__Outputs {
+  _call: RecordAmbulatoryCall;
+
+  constructor(call: RecordAmbulatoryCall) {
+    this._call = call;
+  }
+}
+
+export class RecordReceptionCall extends ethereum.Call {
+  get inputs(): RecordReceptionCall__Inputs {
+    return new RecordReceptionCall__Inputs(this);
+  }
+
+  get outputs(): RecordReceptionCall__Outputs {
+    return new RecordReceptionCall__Outputs(this);
+  }
+}
+
+export class RecordReceptionCall__Inputs {
+  _call: RecordReceptionCall;
+
+  constructor(call: RecordReceptionCall) {
+    this._call = call;
+  }
+
+  get _patientAddress(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+
+  get _notes(): string {
+    return this._call.inputValues[1].value.toString();
+  }
+}
+
+export class RecordReceptionCall__Outputs {
+  _call: RecordReceptionCall;
+
+  constructor(call: RecordReceptionCall) {
+    this._call = call;
+  }
+}
+
+export class RecordTriageCall extends ethereum.Call {
+  get inputs(): RecordTriageCall__Inputs {
+    return new RecordTriageCall__Inputs(this);
+  }
+
+  get outputs(): RecordTriageCall__Outputs {
+    return new RecordTriageCall__Outputs(this);
+  }
+}
+
+export class RecordTriageCall__Inputs {
+  _call: RecordTriageCall;
+
+  constructor(call: RecordTriageCall) {
+    this._call = call;
+  }
+
+  get _patientAddress(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+
+  get _condition(): string {
+    return this._call.inputValues[1].value.toString();
+  }
+
+  get _severity(): string {
+    return this._call.inputValues[2].value.toString();
+  }
+}
+
+export class RecordTriageCall__Outputs {
+  _call: RecordTriageCall;
+
+  constructor(call: RecordTriageCall) {
     this._call = call;
   }
 }
@@ -708,6 +1657,40 @@ export class RegisterPatientCall__Outputs {
   _call: RegisterPatientCall;
 
   constructor(call: RegisterPatientCall) {
+    this._call = call;
+  }
+}
+
+export class RevokeAccessCall extends ethereum.Call {
+  get inputs(): RevokeAccessCall__Inputs {
+    return new RevokeAccessCall__Inputs(this);
+  }
+
+  get outputs(): RevokeAccessCall__Outputs {
+    return new RevokeAccessCall__Outputs(this);
+  }
+}
+
+export class RevokeAccessCall__Inputs {
+  _call: RevokeAccessCall;
+
+  constructor(call: RevokeAccessCall) {
+    this._call = call;
+  }
+
+  get _patientAddress(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+
+  get _medicalStaff(): Address {
+    return this._call.inputValues[1].value.toAddress();
+  }
+}
+
+export class RevokeAccessCall__Outputs {
+  _call: RevokeAccessCall;
+
+  constructor(call: RevokeAccessCall) {
     this._call = call;
   }
 }

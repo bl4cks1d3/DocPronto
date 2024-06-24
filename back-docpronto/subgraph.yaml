@@ -1,6 +1,9 @@
 specVersion: 0.0.4
+description: Subgraph for Patient Medical Record System
+
 schema:
   file: ./schema.graphql
+
 dataSources:
   - kind: ethereum
     name: PatientMedicalRecordSystem
@@ -8,25 +11,53 @@ dataSources:
     source:
       address: "0x5fbdb2315678afecb367f032d93f642f64180aa3"
       abi: PatientMedicalRecordSystem
+      startBlock: 1
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
-        - AddedDoctor
-        - AddedHospital
-        - AddedPatient
-        - AddedPublicKey
+        - Doctor
+        - Hospital
+        - Patient
+        - PublicKey
+        - ReceptionRecord
+        - TriageRecord
+        - AmbulatoryRecord
+        - Medication
+        - Note
+        - AccessGrant
+        - AccessLog
+        - AccessRevoke
+        - Nurse
       abis:
         - name: PatientMedicalRecordSystem
           file: ./abis/PatientMedicalRecordSystem.json
       eventHandlers:
+        - event: AccessGranted(indexed address,indexed address)
+          handler: handleAccessGranted
+        - event: AccessLogged(indexed address,indexed address,string)
+          handler: handleAccessLogged
+        - event: AccessRevoked(indexed address,indexed address)
+          handler: handleAccessRevoked
         - event: AddedDoctor(indexed address,string,string,indexed uint256,string,indexed address)
           handler: handleAddedDoctor
         - event: AddedHospital(indexed address,string,string,indexed uint256,string,string)
           handler: handleAddedHospital
+        - event: AddedNurse(indexed address,string,string,indexed uint256,indexed address)
+          handler: handleAddedNurse
         - event: AddedPatient(indexed address,string,string[],indexed uint256,string,indexed uint256,string,string[],string,string[],string[])
           handler: handleAddedPatient
         - event: AddedPublicKey(indexed address,string)
           handler: handleAddedPublicKey
-      file: ./src/patient-medical-record-system.ts
+        - event: AmbulatoryRecorded(indexed address,indexed address,uint256,string,string)
+          handler: handleAmbulatoryRecorded
+        - event: MedicationAdded(indexed address,string,uint256,string,uint256,uint256)
+          handler: handleMedicationAdded
+        - event: NoteAdded(indexed address,indexed address,uint256,string)
+          handler: handleNoteAdded
+        - event: ReceptionRecorded(indexed address,indexed address,uint256,string)
+          handler: handleReceptionRecorded
+        - event: TriageRecorded(indexed address,indexed address,uint256,string,string)
+          handler: handleTriageRecorded
+      file: ./src/patient-medical-record-system.ts  

@@ -1,13 +1,7 @@
-// SPDX-License-Identifier: GPL-3.0-only	
+// SPDX-License-Identifier: GPL-3.0-only
 
 pragma solidity ^0.8.7;
 
-/// @title A smart contract supporting the Decentralized Patient Medical Record System
-/// @author Aditya Kumar Singh @ July 2022
-/// @notice This smart contract is a part of my 2nd Year Summer Project
-/// @dev All function calls are currently implemented without side effects
-
-//imports
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import {DoctorType} from "./DoctorType.sol";
 import {HospitalType} from "./HospitalType.sol";
@@ -18,6 +12,7 @@ error PatientMedicalRecords__NotOwner();
 error PatientMedicalRecords__NotDoctor();
 error PatientMedicalRecords__NotApproved();
 error PatientMedicalRecords__NotPatient();
+error PatientMedicalRecords__NotAuthorized();
 
 contract PatientMedicalRecordSystem is ReentrancyGuard {
     //Type Declaration
@@ -27,8 +22,68 @@ contract PatientMedicalRecordSystem is ReentrancyGuard {
     mapping(address => DoctorType.Doctor) private s_doctors;
     mapping(address => HospitalType.Hospital) private s_hospitals;
     mapping(address => string) private s_addressToPublicKey;
+    mapping(address => mapping(address => bool)) public accessPermissions; // track access permissions
+    mapping(address => AccessLog[]) public accessLogs; // track access logs
 
     address private immutable i_owner;
+
+    struct AccessLog {
+        address accessor;
+        uint256 timestamp;
+        string action;
+    }
+
+    struct Medication {
+        string name;
+        uint256 dosage;
+        string frequency;
+        uint256 startDate;
+        uint256 endDate;
+    }
+
+    struct Note {
+        address author;
+        uint256 timestamp;
+        string content;
+    }
+
+    struct Nurse {
+        address nurseAddress;
+        string name;
+        string nurseRegistrationId;
+        uint256 dateOfRegistration;
+        address hospitalAddress;
+    }
+
+    struct ReceptionRecord {
+        address patientAddress;
+        address receptionistAddress;
+        uint256 timestamp;
+        string notes;
+    }
+
+    struct TriageRecord {
+        address patientAddress;
+        address nurseAddress;
+        uint256 timestamp;
+        string condition;
+        string severity;
+    }
+
+    struct AmbulatoryRecord {
+        address patientAddress;
+        address doctorAddress;
+        uint256 timestamp;
+        string diagnosis;
+        string treatment;
+    }
+
+    mapping(address => Nurse) private s_nurses; // track nurses
+    mapping(address => ReceptionRecord[]) private patientReceptionRecords; // track reception records
+    mapping(address => TriageRecord[]) private patientTriageRecords; // track triage records
+    mapping(address => AmbulatoryRecord[]) private patientAmbulatoryRecords; // track ambulatory records
+    mapping(address => Medication[]) private patientMedications; // track medications
+    mapping(address => Note[]) private patientNotes; // track notes
 
     //Events
     event AddedPatient(
@@ -64,6 +119,23 @@ contract PatientMedicalRecordSystem is ReentrancyGuard {
         string phoneNumber
     ); //added(mostly) or modified
 
+    event AddedNurse(
+        address indexed nurseAddress,
+        string name,
+        string nurseRegistrationId,
+        uint256 indexed dateOfRegistration,
+        address indexed hospitalAddress
+    ); //added or modified to the mapping
+
+    event AccessGranted(address indexed patient, address indexed medicalStaff);
+    event AccessRevoked(address indexed patient, address indexed medicalStaff);
+    event AccessLogged(address indexed patient, address indexed accessor, string action);
+    event MedicationAdded(address indexed patient, string name, uint256 dosage, string frequency, uint256 startDate, uint256 endDate);
+    event NoteAdded(address indexed patient, address indexed author, uint256 timestamp, string content);
+    event ReceptionRecorded(address indexed patient, address indexed receptionist, uint256 timestamp, string notes);
+    event TriageRecorded(address indexed patient, address indexed nurse, uint256 timestamp, string condition, string severity);
+    event AmbulatoryRecorded(address indexed patient, address indexed doctor, uint256 timestamp, string diagnosis, string treatment);
+
     //modifiers
     modifier onlyOwner() {
         if (msg.sender != i_owner) {
@@ -75,6 +147,20 @@ contract PatientMedicalRecordSystem is ReentrancyGuard {
     modifier onlyDoctor(address senderAddress) {
         if (s_doctors[senderAddress].doctorAddress != senderAddress) {
             revert PatientMedicalRecords__NotDoctor();
+        }
+        _;
+    }
+
+    modifier onlyNurse(address senderAddress) {
+        if (s_nurses[senderAddress].nurseAddress != senderAddress) {
+            revert PatientMedicalRecords__NotAuthorized();
+        }
+        _;
+    }
+
+    modifier onlyAuthorized(address _patientAddress) {
+        if (!accessPermissions[_patientAddress][msg.sender] && msg.sender != i_owner) {
+            revert PatientMedicalRecords__NotAuthorized();
         }
         _;
     }
@@ -145,6 +231,7 @@ contract PatientMedicalRecordSystem is ReentrancyGuard {
             s_patients[_patientAddress].acuteHash.push(_IpfsHash);
         }
         PatientType.Patient memory patient = s_patients[_patientAddress];
+        logAccess(_patientAddress, "Add Patient Details");
         //emitting the event.
         emit AddedPatient(
             _patientAddress,
@@ -216,6 +303,117 @@ contract PatientMedicalRecordSystem is ReentrancyGuard {
         );
     }
 
+    //this will be done using script by the owner
+    function addNurseDetails(
+        address _nurseAddress,
+        string memory _name,
+        string memory _nurseRegistrationId,
+        uint256 _dateOfRegistration,
+        address _hospitalAddress
+    ) external onlyOwner nonReentrant {
+        Nurse memory nurse;
+        nurse.nurseAddress = _nurseAddress;
+        nurse.name = _name;
+        nurse.nurseRegistrationId = _nurseRegistrationId;
+        nurse.dateOfRegistration = _dateOfRegistration;
+        nurse.hospitalAddress = _hospitalAddress;
+        s_nurses[_nurseAddress] = nurse;
+        //emitting the event.
+        emit AddedNurse(
+            nurse.nurseAddress,
+            nurse.name,
+            nurse.nurseRegistrationId,
+            nurse.dateOfRegistration,
+            nurse.hospitalAddress
+        );
+    }
+
+    function recordReception(
+        address _patientAddress,
+        string memory _notes
+    ) external {
+        require(msg.sender == s_hospitals[_patientAddress].hospitalAddress || msg.sender == i_owner, "Unauthorized");
+        ReceptionRecord memory receptionRecord;
+        receptionRecord.patientAddress = _patientAddress;
+        receptionRecord.receptionistAddress = msg.sender;
+        receptionRecord.timestamp = block.timestamp;
+        receptionRecord.notes = _notes;
+        patientReceptionRecords[_patientAddress].push(receptionRecord);
+        emit ReceptionRecorded(_patientAddress, msg.sender, block.timestamp, _notes);
+    }
+
+    function recordTriage(
+        address _patientAddress,
+        string memory _condition,
+        string memory _severity
+    ) external onlyNurse(msg.sender) {
+        TriageRecord memory triageRecord;
+        triageRecord.patientAddress = _patientAddress;
+        triageRecord.nurseAddress = msg.sender;
+        triageRecord.timestamp = block.timestamp;
+        triageRecord.condition = _condition;
+        triageRecord.severity = _severity;
+        patientTriageRecords[_patientAddress].push(triageRecord);
+        emit TriageRecorded(_patientAddress, msg.sender, block.timestamp, _condition, _severity);
+    }
+
+    function recordAmbulatory(
+        address _patientAddress,
+        address _doctorAddress,
+        string memory _diagnosis,
+        string memory _treatment
+    ) external onlyDoctor(msg.sender) {
+        AmbulatoryRecord memory ambulatoryRecord;
+        ambulatoryRecord.patientAddress = _patientAddress;
+        ambulatoryRecord.doctorAddress = msg.sender;
+        ambulatoryRecord.timestamp = block.timestamp;
+        ambulatoryRecord.diagnosis = _diagnosis;
+        ambulatoryRecord.treatment = _treatment;
+        patientAmbulatoryRecords[_patientAddress].push(ambulatoryRecord);
+        emit AmbulatoryRecorded(_patientAddress, msg.sender, block.timestamp, _diagnosis, _treatment);
+    }
+
+    function grantAccess(address _patientAddress, address _medicalStaff) external onlyOwner nonReentrant {
+        accessPermissions[_patientAddress][_medicalStaff] = true;
+        emit AccessGranted(_patientAddress, _medicalStaff);
+    }
+
+    function revokeAccess(address _patientAddress, address _medicalStaff) external onlyOwner nonReentrant {
+        accessPermissions[_patientAddress][_medicalStaff] = false;
+        emit AccessRevoked(_patientAddress, _medicalStaff);
+    }
+
+    function logAccess(address _patient, string memory _action) internal {
+        accessLogs[_patient].push(AccessLog({
+            accessor: msg.sender,
+            timestamp: block.timestamp,
+            action: _action
+        }));
+        emit AccessLogged(_patient, msg.sender, _action);
+    }
+
+    function addNote(address _patientAddress, string memory _content) external onlyAuthorized(_patientAddress) {
+        patientNotes[_patientAddress].push(Note({
+            author: msg.sender,
+            timestamp: block.timestamp,
+            content: _content
+        }));
+        logAccess(_patientAddress, "Add Note");
+        emit NoteAdded(_patientAddress, msg.sender, block.timestamp, _content);
+    }
+
+    function addMedication(address _patientAddress, string memory _name, uint256 _dosage, string memory _frequency, uint256 _startDate, uint256 _endDate) external onlyAuthorized(_patientAddress) {
+        patientMedications[_patientAddress].push(Medication({
+            name: _name,
+            dosage: _dosage,
+            frequency: _frequency,
+            startDate: _startDate,
+            endDate: _endDate
+        }));
+        logAccess(_patientAddress, "Add Medication");
+        emit MedicationAdded(_patientAddress, _name, _dosage, _frequency, _startDate, _endDate);
+    }
+
     function getMyDetails() external view returns (PatientType.Patient memory) {
         return s_patients[msg.sender];
     }
@@ -224,12 +422,14 @@ contract PatientMedicalRecordSystem is ReentrancyGuard {
     function getPatientDetails(address _patientAddress)
         external
         view
+        onlyAuthorized(_patientAddress)
         returns (
             string memory,
             string memory,
             uint256
         )
     {
+        //logAccess(_patientAddress, "Get Patient Details");
         return (
             s_patients[_patientAddress].name,
             s_patients[_patientAddress].publicKey,
@@ -277,5 +477,30 @@ contract PatientMedicalRecordSystem is ReentrancyGuard {
 
     function getOwner() external view returns (address) {
         return i_owner;
+    }
+
+    function getAccessLogs(address _patientAddress) external view onlyAuthorized(_patientAddress) returns (AccessLog[] memory) {
+        return accessLogs[_patientAddress];
+    }
+
+    function getMedications(address _patientAddress) external view onlyAuthorized(_patientAddress) returns (Medication[] memory) {
+        return patientMedications[_patientAddress];
+    }
+
+    function getNotes(address _patientAddress) external view onlyAuthorized(_patientAddress) returns (Note[] memory) {
+        return patientNotes[_patientAddress];
+    }
+
+    function getReceptionRecords(address _patientAddress) external view returns (ReceptionRecord[] memory) {
+        require(msg.sender == s_hospitals[_patientAddress].hospitalAddress || msg.sender == i_owner, "Unauthorized");
+        return patientReceptionRecords[_patientAddress];
+    }
+
+    function getTriageRecords(address _patientAddress) external view onlyAuthorized(_patientAddress) returns (TriageRecord[] memory) {
+        return patientTriageRecords[_patientAddress];
+    }
+
+    function getAmbulatoryRecords(address _patientAddress) external view onlyAuthorized(_patientAddress) returns (AmbulatoryRecord[] memory) {
+        return patientAmbulatoryRecords[_patientAddress];
     }
 }

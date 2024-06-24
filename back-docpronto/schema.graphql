@@ -1,40 +1,115 @@
-type AddedPatient @entity {
+type AccessGrant @entity {
   id: ID!
-  name: String!
-  patientAddress: Bytes!
-  dob: BigInt!
-  phoneNumber: String
-  bloodGroup: String!
-  dateOfRegistration: BigInt!
-  vaccinationHash: [String!]
-  accidentHash: [String!]
-  chronicHash: [String!]
-  acuteHash: [String!]
-  publicKey: String!
+  patient: Bytes! @index
+  medicalStaff: Bytes!
+  timestamp: BigInt!
 }
 
-type AddedDoctor @entity{
+type AccessLog @entity {
   id: ID!
-  name: String!
+  patient: Bytes! @index
+  accessor: Bytes!
+  action: String!
+  timestamp: BigInt!
+}
+
+type AccessRevoke @entity {
+  id: ID!
+  patient: Bytes! @index
+  medicalStaff: Bytes!
+  timestamp: BigInt!
+}
+
+type Doctor @entity {
+  id: ID!
   doctorAddress: Bytes!
+  name: String!
+  doctorRegistrationId: String!
   dateOfRegistration: BigInt!
   specialization: String!
-  doctorRegistrationId: String!
-  hospitalAddress: Bytes
-}
-
-type AddedHospital @entity{
-  id: ID!
-  name: String!
   hospitalAddress: Bytes!
-  dateOfRegistration: BigInt!      # currently nullable for now.
-  hospitalRegistrationId: String!
-  email: String
-  phoneNumber: String
 }
 
-type AddedPublicKey @entity{
+type Hospital @entity {
+  id: ID!
+  hospitalAddress: Bytes!
+  name: String!
+  hospitalRegistrationId: String!
+  dateOfRegistration: BigInt!
+  email: String!
+  phoneNumber: String!
+}
+
+type Nurse @entity {
+  id: ID!
+  nurseAddress: Bytes!
+  name: String!
+  nurseRegistrationId: String!
+  dateOfRegistration: BigInt!
+  hospitalAddress: Bytes!
+}
+
+type Patient @entity {
+  id: ID!
+  patientAddress: Bytes!
+  name: String!
+  dob: BigInt!
+  bloodGroup: String!
+  dateOfRegistration: BigInt!
+  publicKey: String!
+  vaccinationHash: [String!]!
+  phoneNumber: String!
+  accidentHash: [String!]!
+  chronicHash: [String!]!
+  acuteHash: [String!]!
+}
+
+type PublicKey @entity {
   id: ID!
   patientAddress: Bytes!
   publicKey: String!
+}
+
+type Medication @entity {
+  id: ID!
+  patientAddress: Bytes!
+  name: String!
+  dosage: BigInt!
+  frequency: String!
+  startDate: BigInt!
+  endDate: BigInt!
+}
+
+type Note @entity {
+  id: ID!
+  patientAddress: Bytes!
+  author: Bytes!
+  timestamp: BigInt!
+  content: String!
+}
+
+type ReceptionRecord @entity {
+  id: ID!
+  patientAddress: Bytes!
+  receptionistAddress: Bytes!
+  timestamp: BigInt!
+  notes: String!
+}
+
+type TriageRecord @entity {
+  id: ID!
+  patientAddress: Bytes!
+  nurseAddress: Bytes!
+  timestamp: BigInt!
+  condition: String!
+  severity: String!
+}
+
+type AmbulatoryRecord @entity {
+  id: ID!
+  patientAddress: Bytes!
+  doctorAddress: Bytes!
+  timestamp: BigInt!
+  diagnosis: String!
+  treatment: String!
 }
