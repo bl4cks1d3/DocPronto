@@ -1,6 +1,3 @@
-Claro! Aqui está o README completo com uma parte explicando o que é o projeto:
-
-```markdown
 # Projeto Hackathon Saúde 4.0
 
 Este projeto foi desenvolvido para o Hackathon Saúde 4.0, focado em soluções inovadoras para o setor da saúde. Ele é composto por duas partes principais: um backend que lida com a lógica de negócios e um frontend que proporciona uma interface amigável ao usuário.
@@ -20,17 +17,9 @@ O objetivo deste projeto é melhorar a gestão de dados de saúde utilizando tec
 Este projeto utiliza a tecnologia blockchain para garantir a integridade, segurança e transparência dos dados de saúde. O uso da blockchain permite que os dados sejam armazenados de forma descentralizada, evitando fraudes e garantindo que as informações sejam imutáveis e verificáveis.
 
 ## Funcionalidades
-
-### Backend
-
-- Registro de pacientes
-- Agendamento de consultas
+- Cadastro de médicos
+- Cadastro de pacientes
 - Histórico médico
-
-### Frontend
-
-- Interface amigável para cadastro de pacientes
-- Agendamento de consultas
 - Visualização do histórico médico
 
 ## Instalação e Configuração
@@ -51,13 +40,15 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 1. **Clone o repositório:**
 
    ```bash
-   git clone https://github.com/seu-usuario/seu-repositorio.git
-   cd seu-repositorio
+   git clone https://github.com/bl4cks1d3/DocPronto.git
+   cd DocPronto
    ```
 
 2. **Inicialize o Docker:**
 
-   ```bash
+   Navegue até a pasta do backend e inicialize o docker:
+
+    ```bash
    docker-compose up -d
    ```
 
@@ -69,7 +60,6 @@ Certifique-se de ter as seguintes ferramentas instaladas:
    cd b*
    yarn install
    ```
-
 4. **Instale as dependências do Frontend:**
 
    Navegue até a pasta do frontend e instale as dependências:
@@ -115,25 +105,14 @@ Após a instalação e configuração, você pode iniciar o projeto da seguinte 
 
    Abra seu navegador e vá para `http://localhost:3000` para acessar a interface do usuário.
 
-## Testes
 
-### Backend
+## A ferramenta
+![Imagem do WhatsApp de 2024-06-24 à(s) 04 03 51_b767cb31](https://github.com/bl4cks1d3/DocPronto/assets/49175546/40bb59ca-15f9-42c2-bf10-d2fa982b13b1)
+![Imagem do WhatsApp de 2024-06-24 à(s) 04 04 18_7f90f223](https://github.com/bl4cks1d3/DocPronto/assets/49175546/aa85f9e8-7fe6-4fab-9c44-098881fc77a5)
+![Imagem do WhatsApp de 2024-06-24 à(s) 04 10 29_506e2b2a](https://github.com/bl4cks1d3/DocPronto/assets/49175546/735bf9b7-2181-4e55-9592-4c0620ca4f83)
+![Imagem do WhatsApp de 2024-06-24 à(s) 04 14 42_56d353c2](https://github.com/bl4cks1d3/DocPronto/assets/49175546/2f6be32e-4538-42d4-af1a-fc01934753f0)
 
-Para rodar os testes do backend, use:
 
-```bash
-cd backend
-yarn test
-```
-
-### Frontend
-
-Para rodar os testes do frontend, use:
-
-```bash
-cd frontend
-yarn test
-```
 
 ## Contribuições
 
@@ -143,9 +122,12 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull re
 
 Este projeto está licenciado sob a licença [MIT](LICENSE).
 
-## Contato
+## Sobre
+### Equipe Blackout
+#### Angel Jackson Santos - Designer (https://www.linkedin.com/in/angel-jackson-2a663776/)
+#### Jaqueline de Sousa Queroz - Front-End e Negócios (https://www.linkedin.com/in/jaquelinequeroz/)
+#### Wesley Cardoso da Silva - FullStack e Negócios (https://www.linkedin.com/in/bl4cksidesystem/)
 
-Para mais informações, entre em contato com [seu nome] em [seu email].
+Este projeto foi desenvolvido para o hackathon Saúde 4.0. Dúvidas, entre em contato com a equipe para saber mais. 
 ```
 
-Essa versão do README inclui uma explicação inicial sobre o que é o projeto, fornecendo uma visão geral clara antes de detalhar as tecnologias, funcionalidades, instalação e uso.
