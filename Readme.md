@@ -69,18 +69,6 @@ Certifique-se de ter as seguintes ferramentas instaladas:
    yarn install
    ```
 
-5. **Configuração do The Graph:**
-
-   Execute os seguintes comandos para configurar o The Graph:
-
-   ```bash
-   docker-compose up
-   graph codegen
-   graph build
-   graph create --node http://localhost:8020/ doc
-   graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 doc
-   ```
-
 ## Uso
 
 Após a instalação e configuração, você pode iniciar o projeto da seguinte maneira:
@@ -93,7 +81,19 @@ Após a instalação e configuração, você pode iniciar o projeto da seguinte 
    yarn hardhat node --hostname 0.0.0.0
    ```
 
-2. **Inicie o frontend:**
+2. **Configuração do The Graph:**
+
+   Execute os seguintes comandos para configurar o The Graph:
+
+   ```bash
+   docker-compose up
+   graph codegen
+   graph build
+   graph create --node http://localhost:8020/ doc
+   graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 doc
+   ```
+
+3. **Inicie o frontend:**
 
    Navegue até a pasta do frontend e execute:
 
