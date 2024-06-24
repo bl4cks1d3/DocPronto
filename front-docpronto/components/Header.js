@@ -8,7 +8,7 @@ export default function Header() {
                 <Link href="/">
                     <a className="relative flex items-center inline-block h-5 h-full font-black leading-none">
                         {/* We have a SVG here */}
-                        <img class="logo" src="/logo.svg" alt="Logo of DocPronto" />
+                        <img className="logo" src="/logo.svg" alt="Logo of DocPronto" />
                         <span className="ml-3 text-xl text-gray-800">
                             DocPronto
 
