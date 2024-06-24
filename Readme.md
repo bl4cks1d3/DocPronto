@@ -100,8 +100,9 @@ Após a instalação e configuração, você pode iniciar o projeto da seguinte 
    ```bash
    yarn dev
    ```
+3. **Instale a extensão da carteira Metamask no google chrome**
 
-3. **Acesse a aplicação:**
+4. **Acesse a aplicação:**
 
    Abra seu navegador e vá para `http://localhost:3000` para acessar a interface do usuário.
 
