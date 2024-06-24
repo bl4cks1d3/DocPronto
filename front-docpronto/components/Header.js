@@ -8,10 +8,10 @@ export default function Header() {
                 <Link href="/">
                     <a className="relative flex items-center inline-block h-5 h-full font-black leading-none">
                         {/* We have a SVG here */}
-                        <img src="/logo.svg" alt="Logo of MediChain" />
+                        <img src="/logo.svg" alt="Logo of DocPronto" />
                         <span className="ml-3 text-xl text-gray-800">
-                            MediChain
-                            <span className="text-pink-500">.</span>
+                            DocPronto
+
                         </span>
                     </a>
                 </Link>
@@ -27,7 +27,7 @@ export default function Header() {
                     </Link>
                     <Link href="/#features">
                         <a className="mr-0 font-bold duration-100 md:mr-3 lg:mr-8 transition-color hover:text-indigo-600">
-                            Features
+                            Funcionalidades
                         </a>
                     </Link>
                     <Link href="/hospitalDashboard">
@@ -37,18 +37,18 @@ export default function Header() {
                     </Link>
                     <Link href="/doctorDashboard">
                         <a className="mr-0 font-bold duration-100 md:mr-3 lg:mr-8 transition-color hover:text-indigo-600">
-                            Doctor
+                            Profissional
                         </a>
                     </Link>
                     <div className="flex flex-col block w-full font-medium border-t border-gray-200 md:hidden">
                         <Link href="/ownerDashboard">
                             <a className="w-full py-2 font-bold text-center text-pink-500">
-                                Owner
+                                Administrador
                             </a>
                         </Link>
                         <Link href="/patientDashboard">
                             <a className="relative inline-block w-full px-5 py-3 text-sm leading-none text-center text-white bg-indigo-700 fold-bold">
-                                Patient
+                                Paciente
                             </a>
                         </Link>
                     </div>
@@ -57,12 +57,12 @@ export default function Header() {
                 <div className=" absolute left-0 flex-col items-center justify-center hidden w-full pb-8 mt-48 border-b border-gray-200 md:relative md:w-auto md:bg-transparent md:border-none md:mt-0 md:flex-row md:p-0 md:items-end md:flex md:justify-between">
                     <Link href="/ownerDashboard">
                         <a className="relative z-40 px-3 py-2 mr-0 text-sm font-bold text-pink-500 md:px-5 lg:text-white sm:mr-3 md:mt-0">
-                            Owner
+                            Administrador
                         </a>
                     </Link>
                     <Link href="/patientDashboard">
                         <a className="relative z-40 inline-block w-auto h-full px-5 py-3 text-sm font-bold leading-none text-white transition-all transition duration-100 duration-300 bg-indigo-700 rounded-lg shadow-md fold-bold lg:bg-white lg:text-indigo-700 sm:w-full lg:shadow-none hover:shadow-xl">
-                            Patient
+                            Paciente
                         </a>
                     </Link>
                     {/* We have an SVG Here */}

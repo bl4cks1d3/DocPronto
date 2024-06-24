@@ -8,8 +8,8 @@ export default function Home() {
     return (
         <div>
             <Head>
-                <title>MediChain - Homepage</title>
-                <meta name="description" content="MediChain - Homepage" />
+                <title>DocPronto</title>
+                <meta name="description" content="DocPronto - Homepage" />
                 <link rel="icon" href="/logo.svg" />
             </Head>
             <div className="overflow-x-hidden antialiased">
@@ -20,31 +20,29 @@ export default function Home() {
                     <div className="container flex flex-col items-center justify-between h-full max-w-6xl px-8 mx-auto -mt-32 lg:flex-row xl:px-0">
                         <div className="z-30 flex flex-col items-center w-full max-w-xl pt-48 text-center lg:items-start lg:w-1/2 lg:pt-20 xl:pt-40 lg:text-left">
                             <h1 className="relative mb-4 text-3xl font-black leading-tight text-gray-900 sm:text-6xl xl:mb-8">
-                                Decentralized Telemedicine and Medical Records
+                                 Revolucione o atendimento médico
                             </h1>
                             <p className="pr-0 mb-8 text-base text-gray-600 sm:text-lg xl:text-xl lg:pr-20">
-                                An EVM compatible decentralized application
-                                where only patients can access their medical
-                                data, giving them full control over their own data.
+                            Centralize e compartilhe o histórico de saúde com segurança, reduza a repetição de informações e facilite um diagnóstico mais preciso e eficiente.
                             </p>
                             <button className="btn btn-primary md:btn-md btn-sm text-center">
                                 <Link href="/patientDashboard">
-                                    <a>Patient Login</a>
+                                    <a>Paciente</a>
                                 </Link>
                             </button>
                             <button className="btn btn-primary md:btn-base btn-sm md:hidden mt-4 md:mt-0">
                                 <Link href="/doctorDashboard">
-                                    <a>Doctor Login</a>
+                                    <a>Profissional</a>
                                 </Link>
                             </button>
                             <button className="btn btn-primary md:btn-base btn-sm md:hidden mt-4 md:mt-0">
                                 <Link href="/hospitalDashboard">
-                                    <a>Hospital Login</a>
+                                    <a>Hospital</a>
                                 </Link>
                             </button>
                             <button className="btn btn-primary md:btn-base btn-sm md:hidden mt-4 md:mt-0">
                                 <Link href="/ownerDashboard">
-                                    <a>Owner Login</a>
+                                    <a>Administrador</a>
                                 </Link>
                             </button>
                         </div>
@@ -63,15 +61,14 @@ export default function Home() {
                 {/* <!-- BEGIN FEATURES SECTION --> */}
                 <div
                     id="features"
-                    className="relative w-full px-8 py-10 border-t border-gray-200 md:py-16 lg:py-24 xl:py-40 xl:px-0"
+                    className="relative w-full px-8 py-300 border-t border-gray-200 md:py-16 lg:py-24 xl:py-40 xl:px-0"
                 >
                     <div className="container flex flex-col items-center justify-between h-full max-w-6xl mx-auto">
                         <h2 className="my-5 text-base font-medium tracking-tight text-indigo-500 uppercase">
-                            Features
+                            Funcionalidades
                         </h2>
                         <h3 className="max-w-2xl px-5 mt-2 text-3xl font-black leading-tight text-center text-gray-900 sm:mt-0 sm:px-0 sm:text-6xl">
-                            Built and Designed with patients ease and privacy in
-                            Mind
+                         Transformando do atendimento hospitalar
                         </h3>
                         <div className="flex flex-col w-full mt-0 lg:flex-row sm:mt-10 lg:mt-20">
                             <div className="w-full max-w-md p-4 mx-auto mb-0 sm:mb-16 lg:mb-0 lg:w-1/3">
@@ -88,21 +85,12 @@ export default function Home() {
                                         alt=""
                                         className="relative w-20 h-20"
                                     />
-                                    <h4 className="relative mt-6 text-lg font-bold">
-                                        Ease and Control
+                                    <h4 className="relative text-center mt-6 text-lg font-bold">
+                                        Histórico Médico
                                     </h4>
                                     <p className="relative mt-2 md:text-base text-sm text-center text-gray-600">
-                                        Ease and control of your medical
-                                        records. You can access it whenever you
-                                        want. Only you can access your data and
-                                        no one can.
+                                    Armazena o histórico de consultas, diagnósticos e prescrições em um único local acessível rapidamente.
                                     </p>
-                                    <a
-                                        href="https://www.cloudflare.com/en-in/learning/ssl/how-does-public-key-encryption-work/"
-                                        className="relative flex mt-2 text-sm font-medium text-indigo-500 underline"
-                                    >
-                                        Learn More
-                                    </a>
                                 </div>
                             </div>
 
@@ -120,21 +108,12 @@ export default function Home() {
                                         alt=""
                                         className="relative w-20 h-20"
                                     />
-                                    <h4 className="relative mt-6 text-lg font-bold">
-                                        Immutability
+                                    <h4 className="relative text-center mt-6 text-lg font-bold">
+                                        Compartilhamento
                                     </h4>
                                     <p className="relative mt-2 md:text-base text-sm text-center text-gray-600">
-                                        Being deployed on public blockchain,
-                                        this application makes sure that the
-                                        patient's data is permanent, indellible
-                                        and unalterable.
+                                    Permite que pacientes compartilhem seu histórico médico com profissionais de saúde autorizados de forma segura e controlada.
                                     </p>
-                                    <a
-                                        href="https://www.solulab.com/what-is-immutable-ledger-in-blockchain-and-its-benefits"
-                                        className="relative flex mt-2 text-sm font-medium text-indigo-500 underline"
-                                    >
-                                        Learn More
-                                    </a>
                                 </div>
                             </div>
 
@@ -152,22 +131,12 @@ export default function Home() {
                                         alt=""
                                         className="relative w-20 h-20"
                                     />
-                                    <h4 className="relative mt-6 text-lg font-bold">
-                                        Enhanced Security
+                                    <h4 className="relative text-center mt-6 text-lg font-bold">
+                                        Confiabilidade
                                     </h4>
                                     <p className="relative mt-2 md:text-base text-sm text-center text-gray-600">
-                                        Every node in the network has an
-                                        encrypted copy of your data which only
-                                        you can decrypt. This removes single
-                                        point of failure making the data safe
-                                        from ransomeware attacks.
+                                    Blockchain para garantir a integridade dos registros, protegendo-os contra alterações não autorizadas.
                                     </p>
-                                    <a
-                                        href="https://www.techopedia.com/can-the-blockchain-be-hacked/2/33623"
-                                        className="relative flex mt-2 text-sm font-medium text-indigo-500 underline"
-                                    >
-                                        Learn More
-                                    </a>
                                 </div>
                             </div>
                         </div>
