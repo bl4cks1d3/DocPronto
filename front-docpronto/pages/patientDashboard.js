@@ -49,11 +49,11 @@ export default function PatientDashboard() {
                     Patient Dashboard
                     {isWeb3Enabled ? (
                         <div className="badge badge-primary ml-4">
-                            Web3 is Enabled
+                            Conectado
                         </div>
                     ) : (
                         <div className="badge badge-warning ml-4">
-                            Web3 Not Enabled
+                            Desconectado
                         </div>
                     )}
                 </div>

@@ -22,15 +22,10 @@ export default function PatientWorkflow() {
                     </div>
                     <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
                         <h2 className="text-gray-900 text-lg title-font font-medium mb-2">
-                            View Details
+                            Informações
                         </h2>
                         <p className="leading-relaxed text-base">
-                            Each Hospital is given a unique account address and
-                            after connecting to this application, registered
-                            hospitals can view their details. New Hospitals can
-                            be registered by the deployer (Owner) only i.e. the
-                            Head of all Hospital Administrations registered in
-                            the system.
+                        Cada hospital recebe um endereço de conta exclusivo. Após se conectar ao aplicativo, os hospitais cadastrados podem acessar e visualizar seus próprios dados. Novos hospitais só podem ser cadastrados pelo implantador, ou seja, pelo chefe de todas as administrações hospitalares registradas no sistema.
                         </p>
                     </div>
                 </div>

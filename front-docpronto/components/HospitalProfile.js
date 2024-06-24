@@ -44,7 +44,7 @@ export default function HospitalProfile({
                                 title="view on etherscan"
                                 target="_blank"
                                 href={
-                                    "https://goerli.etherscan.io/address/" +
+                                    "https://localhost/address/" +
                                     hospitalAddress
                                 }
                             >

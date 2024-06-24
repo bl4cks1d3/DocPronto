@@ -22,12 +22,10 @@ export default function PatientWorkflow() {
                     </div>
                     <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
                         <h2 className="text-gray-900 text-lg title-font font-medium mb-2">
-                            View Details
+                            Informações
                         </h2>
                         <p className="leading-relaxed text-base">
-                            Each doctor registered in the system by the "Owner"
-                            can view his/her details. These details are
-                            basically the profile information of the doctor.
+                        Cada médico cadastrado pelo "Proprietário" pode acessar e visualizar os detalhes do seu perfil, que incluem informações pessoais e profissionais
                         </p>
                     </div>
                 </div>

@@ -375,11 +375,11 @@ export default function OwnerDashboard() {
                         Owner Dashboard
                         {isWeb3Enabled ? (
                             <div className="badge badge-primary ml-4">
-                                Web3 is Enabled
+                                Conectado
                             </div>
                         ) : (
                             <div className="badge badge-warning ml-4">
-                                Web3 Not Enabled
+                                Desconectado
                             </div>
                         )}
                     </div>
@@ -413,7 +413,7 @@ export default function OwnerDashboard() {
                                     </button>
                                     <button className="btn">
                                         <a
-                                            href={`https://goerli.etherscan.io/address/${medicalRecordSystemAddress}`}
+                                            href={`https://localhost/address/${medicalRecordSystemAddress}`}
                                             target="_blank"
                                         >
                                             View on Etherscan

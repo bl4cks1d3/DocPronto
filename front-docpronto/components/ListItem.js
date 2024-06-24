@@ -88,14 +88,14 @@ export default function ListItem({ metadataURI }) {
                                     </span>
                                     <a
                                         className="inline-block badge pb-3 ml-4 badge-warning"
-                                        href={`https://goerli.etherscan.io/address/${data.doctorAddress}`}
+                                        href={`https://localhost/address/${data.doctorAddress}`}
                                         target="_blank"
                                     >
                                         {data.doctorAddress}
                                     </a>
                                     <a
                                         className="inline-block md:hidden badge ml-4 badge-warning"
-                                        href={`https://goerli.etherscan.io/address/${data.doctorAddress}`}
+                                        href={`https://localhost/address/${data.doctorAddress}`}
                                         target="_blank"
                                     >
                                         {truncatStr(data.doctorAddress, 15)}

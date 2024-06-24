@@ -29,7 +29,7 @@ export default function NotRegisteredPatient({account}) {
                     </svg>
                     <span>
                         <span className="font-semibold text-lg">
-                            Alert: Not Registered <br />
+                            Alert: Nao registrado <br />
                         </span>
                         You are <span className="font-semibold">NOT</span>{" "}
                         registered as a{" "}
@@ -56,7 +56,7 @@ export default function NotRegisteredPatient({account}) {
                     className="btn btn-primary mt-10 btn-md"
                     onClick={handleButtonClick}
                 >
-                    Register Now
+                    Registrar 
                 </button>
             </div>
         </div>

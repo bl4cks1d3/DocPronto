@@ -18,7 +18,7 @@ export default function NoFiles({customText}) {
                 header={[
                     "",
                     <span></span>,
-                    <span className="md:ml-20">No Files</span>,
+                    <span className="md:ml-20">Sem arquivos</span>,
                     <span></span>,
                     <span></span>,
                     "",

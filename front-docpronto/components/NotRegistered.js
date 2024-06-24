@@ -18,7 +18,7 @@ export default function NotRegistered({ name }) {
                     </svg>
                     <span>
                         <span className="font-semibold text-lg">
-                            Alert: Not Registered <br />
+                            Alert: Nao registrado <br />
                         </span>
                         You are <span className="font-semibold">NOT</span>{" "}
                         registered as a{" "}

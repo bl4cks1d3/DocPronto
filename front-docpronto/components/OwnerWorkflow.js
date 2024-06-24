@@ -8,12 +8,10 @@ export default function OwnerWorkflow() {
                 <div className="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
                     <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
                         <h2 className="text-gray-900 text-lg title-font font-medium mb-2">
-                            Register Hospitals
+                        Cadastrar Hospitais
                         </h2>
                         <p className="leading-relaxed text-base">
-                            The owner(deployer of the smart contract) can
-                            register new hospitals in the system. Presently it
-                            is can be done using CLI.
+                        O proprietário (implantador do contrato inteligente) pode cadastrar novos hospitais no sistema. 
                         </p>
                     </div>
                     <div className="sm:w-32 sm:order-none order-first sm:h-32 h-20 w-20 sm:ml-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
@@ -49,16 +47,16 @@ export default function OwnerWorkflow() {
                     </div>
                     <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
                         <h2 className="text-gray-900 text-lg title-font font-medium mb-2">
-                            Register Doctors
+                        Cadastrar profissionais de saude
                         </h2>
                         <p className="leading-relaxed text-base">
-                            The owner(deployer of the smart contract) can
-                            register new hospitals in the system. Presently it
-                            is can be done using CLI.
+                        O proprietário (implantador do contrato inteligente) pode cadastrar novos profissionais de saude no sistema. 
                         </p>
                     </div>
                 </div>
+                
             </div>
+            
         </section>
     )
 }

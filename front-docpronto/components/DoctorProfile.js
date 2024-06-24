@@ -33,7 +33,7 @@ export default function DoctorProfile({
                         <div className="mb-1">
                             <span>
                                 <span className="font-sans md:text-xl font-medium hover:underline">
-                                    Name
+                                    Nome
                                 </span>
                                 :{" "}
                                 <span className="font-serif md:text-xl font-normal">
@@ -46,7 +46,7 @@ export default function DoctorProfile({
                         </div>
                         <div className="mb-1">
                             <span className="font-sans md:text-xl font-medium hover:underline">
-                                Doctor Registration Id
+                                Profissional Id
                             </span>
                             :{" "}
                             <a className="badge badge-success ml-3 md:p-2 px-4">
@@ -55,7 +55,7 @@ export default function DoctorProfile({
                         </div>
                         <div className="mb-1">
                             <span className="font-sans md:text-xl font-medium hover:underline">
-                                Doctor Account Address
+                            Profissional Endereço
                             </span>
                             :{" "}
                             <a
@@ -63,7 +63,7 @@ export default function DoctorProfile({
                                 title="view on etherscan"
                                 target="_blank"
                                 href={
-                                    "https://goerli.etherscan.io/address/" +
+                                    "https://localhost/address/" +
                                     doctorAddress
                                 }
                             >
@@ -72,7 +72,7 @@ export default function DoctorProfile({
                         </div>
                         <div className="mb-1">
                             <span className="font-sans md:text-xl font-medium hover:underline">
-                                Hospital Account Address
+                                Hospital Endereço
                             </span>
                             :{" "}
                             <a
@@ -80,7 +80,7 @@ export default function DoctorProfile({
                                 title="view on etherscan"
                                 target="_blank"
                                 href={
-                                    "https://goerli.etherscan.io/address/" +
+                                    "https://localhost/address/" +
                                     hospitalAddress
                                 }
                             >
@@ -104,7 +104,7 @@ export default function DoctorProfile({
                     className="btn btn-primary mt-10 btn-md"
                     onClick={handleButtonClick}
                 >
-                    Add Patient Data
+                    Adiconar informaçoes
                 </button>
             </div>
         </div>

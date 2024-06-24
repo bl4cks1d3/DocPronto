@@ -196,7 +196,7 @@ export default function PatientProfile({
                                 title="view on etherscan"
                                 target="_blank"
                                 href={
-                                    "https://goerli.etherscan.io/address/" +
+                                    "https://localhost/address/" +
                                     patientAddress
                                 }
                             >
