@@ -19,13 +19,13 @@ export default function PatientDashboard() {
     const {
         loading: fetchingAddedPatients,
         error,
-        data: Patients,
+        data: patients,
     } = useQuery(GET_ADDED_PATIENTS)
 
     let isRegistered = false
     let patientAddresses
-    if (!fetchingAddedPatients && Patients) {
-        patientAddresses = Patients.patients.map(
+    if (!fetchingAddedPatients && patients) {
+        patientAddresses = patients.patients.map(
             (patient) => patient.patientAddress
         )
         if (patientAddresses.includes(account)) {
@@ -46,7 +46,7 @@ export default function PatientDashboard() {
             <Header />
             <div className="container">
                 <div className="py-4 px-3 font-bold text-4xl ml-12">
-                    Patient Dashboard
+                    Paciente Dashboard
                     {isWeb3Enabled ? (
                         <div className="badge badge-primary ml-4">
                             Conectado
@@ -63,7 +63,7 @@ export default function PatientDashboard() {
 
                 <div className="ml-10 w-4/6">
                     {isWeb3Enabled ? (
-                        fetchingAddedPatients || !Patients ? (
+                        fetchingAddedPatients || !patients ? (
                             <div
                                 style={{
                                     backgroundColor: "#ECECFE",
@@ -82,7 +82,7 @@ export default function PatientDashboard() {
                                 />
                             </div>
                         ) : isRegistered ? (
-                            Patients.Patients.map((patient) => {
+                            patients.patients.map((patient) => {
                                 patientAddresses.push(patient.patientAddress)
                                 if (patient.patientAddress === account) {
                                     const {

@@ -239,7 +239,7 @@ export default function PatientProfile({
                                 className="btn btn-primary btn-md mt-8"
                                 onClick={handleClick}
                             >
-                                View Medical Files
+                                Olhar arquivos medicos
                             </button>
                         </div>
                     ) : iscorrectlyDecrypted ? (
