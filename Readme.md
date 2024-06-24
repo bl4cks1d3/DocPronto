@@ -44,6 +44,7 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 - Yarn ou npm
 - IPFS
 - Graph Node
+- Hardhat
 
 ### Passo a Passo
 
@@ -65,7 +66,7 @@ Certifique-se de ter as seguintes ferramentas instaladas:
    Navegue até a pasta do backend e instale as dependências:
 
    ```bash
-   cd backend
+   cd b*
    yarn install
    ```
 
@@ -74,7 +75,7 @@ Certifique-se de ter as seguintes ferramentas instaladas:
    Navegue até a pasta do frontend e instale as dependências:
 
    ```bash
-   cd frontend
+   cd f*
    yarn install
    ```
 
@@ -83,6 +84,7 @@ Certifique-se de ter as seguintes ferramentas instaladas:
    Execute os seguintes comandos para configurar o The Graph:
 
    ```bash
+   docker-compose up
    graph codegen
    graph build
    graph create --node http://localhost:8020/ doc
@@ -98,7 +100,7 @@ Após a instalação e configuração, você pode iniciar o projeto da seguinte 
    Navegue até a pasta do backend e execute:
 
    ```bash
-   yarn start
+   yarn hardhat node --hostname 0.0.0.0
    ```
 
 2. **Inicie o frontend:**
@@ -106,7 +108,7 @@ Após a instalação e configuração, você pode iniciar o projeto da seguinte 
    Navegue até a pasta do frontend e execute:
 
    ```bash
-   yarn start
+   yarn dev
    ```
 
 3. **Acesse a aplicação:**
