@@ -8,7 +8,7 @@ export default function Header() {
                 <Link href="/">
                     <a className="relative flex items-center inline-block h-5 h-full font-black leading-none">
                         {/* We have a SVG here */}
-                        <img src="/logo.svg" alt="Logo of DocPronto" />
+                        <img class="logo" src="/logo.svg" alt="Logo of DocPronto" />
                         <span className="ml-3 text-xl text-gray-800">
                             DocPronto
 
@@ -27,7 +27,7 @@ export default function Header() {
                     </Link>
                     <Link href="/#features">
                         <a className="mr-0 font-bold duration-100 md:mr-3 lg:mr-8 transition-color hover:text-indigo-600">
-                            Funcionalidades
+                            Diferenciais
                         </a>
                     </Link>
                     <Link href="/hospitalDashboard">

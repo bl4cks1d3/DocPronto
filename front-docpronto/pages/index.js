@@ -65,7 +65,7 @@ export default function Home() {
                 >
                     <div className="container flex flex-col items-center justify-between h-full max-w-6xl mx-auto">
                         <h2 className="my-5 text-base font-medium tracking-tight text-indigo-500 uppercase">
-                            Funcionalidades
+                            Diferenciais
                         </h2>
                         <h3 className="max-w-2xl px-5 mt-2 text-3xl font-black leading-tight text-center text-gray-900 sm:mt-0 sm:px-0 sm:text-6xl">
                          Transformando do atendimento hospitalar
